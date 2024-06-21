@@ -13,25 +13,25 @@
 * @date		: 2022/5/10	  12:36
 ****************************************************/
 
-//Àà - ×Ö½Ú¹ÜÀí
+//ç±» - å­—èŠ‚ç®¡ç†
 class Bytes
 {
 
 public:
 	std::vector<byte> Data;
-	// Ä¬ÈÏ¹¹Ôì
+	// é»˜è®¤æ„é€ 
 	Bytes() {}
-	// ÒÔ×Ö½ÚÖ¸ÕëºÍ´óĞ¡³õÊ¼»¯d
+	// ä»¥å­—èŠ‚æŒ‡é’ˆå’Œå¤§å°åˆå§‹åŒ–d
 	Bytes(const byte* _In, size_t Size);
-	// ÒÔ×Ö½Ú¼¯ºÏ³õÊ¼»¯
+	// ä»¥å­—èŠ‚é›†åˆåˆå§‹åŒ–
 	Bytes(std::initializer_list<byte> _In);
-	// ÒÔÕûÊıĞÍ³õÊ¼»¯×Ö½ÚÊı×é
+	// ä»¥æ•´æ•°å‹åˆå§‹åŒ–å­—èŠ‚æ•°ç»„
 	Bytes(const int& _In);
-	// ÒÔ³¤ÕûÊıĞÍ³õÊ¼»¯×Ö½ÚÊı×é
+	// ä»¥é•¿æ•´æ•°å‹åˆå§‹åŒ–å­—èŠ‚æ•°ç»„
 	Bytes(const long long& _In);
-	// ÒÔ»úÆ÷Âë×Ö·û´®³õÊ¼»¯×Ö½ÚÊı×é
+	// ä»¥æœºå™¨ç å­—ç¬¦ä¸²åˆå§‹åŒ–å­—èŠ‚æ•°ç»„
 	Bytes(const std::string& _In);
-	// ÖØÔØÔËËã·û
+	// é‡è½½è¿ç®—ç¬¦
 	bool operator!=(Bytes _In)
 	{
 		for (int i = 0; i < _In.Length(); i++)
@@ -68,18 +68,19 @@ public:
 		return *this;
 	}
 
-	// Ìí¼Ó×Ö½Ú
+	// æ·»åŠ å­—èŠ‚
 	Bytes& Add(const byte _In);
-	// ·µ»Ø×Ö½ÚÊı×é´óĞ¡
+	// è¿”å›å­—èŠ‚æ•°ç»„å¤§å°
 	int Length();
-	// Ìæ»»×Ö½ÚÊı¾İ
+	// æ›¿æ¢å­—èŠ‚æ•°æ®
 	bool Replace(int Index, int Length, Bytes Source);
-	// Ñ°ÕÒ×Ö½ÚÊı¾İ
+	// å¯»æ‰¾å­—èŠ‚æ•°æ®
 	int Find(Bytes Source, int Index = 0);
-	// È¡ÖĞ¼ä×Ö½ÚÊı¾İ
+	// å–ä¸­é—´å­—èŠ‚æ•°æ®
 	Bytes Get(int Index, int Length);
+	byte Get(int Index);
 	byte* GetData();
-	// Êä³ö×Ö½ÚÊı×é
+	// è¾“å‡ºå­—èŠ‚æ•°ç»„
 	void Print();
 };
 
@@ -191,6 +192,11 @@ int Bytes::Find(Bytes Source, int Index)
 			return i;
 	}
 	return -1;
+}
+
+byte Bytes::Get(int Index)
+{
+	return this->Data.at(Index);
 }
 
 Bytes Bytes::Get(int Index, int Length)
